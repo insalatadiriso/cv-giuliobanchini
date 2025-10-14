@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Giulio Banchini — CV compatto</title>
+  <title>Giulio Banchini — CV compatto (Dark)</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,56 +12,57 @@
   <style>
     :root{
       --primary:#2D6CDF; --secondary:#3B1C67; --accent:#00D1B2;
-      --n-900:#0F172A; --n-800:#1E293B; --n-500:#94A3B8; --n-100:#F1F5F9; --white:#fff;
+      --n-900:#0B1020; --n-800:#0F172A; --n-600:#334155; --n-500:#94A3B8; --n-300:#E2E8F0; --white:#FFFFFF;
       --radius:12px;
     }
     @page{size:A4; margin:12mm}
     @media print{
-      a[href]::after{content:" (" attr(href) ")"; font-size:9pt; color:#475569}
+      a[href]::after{content:" (" attr(href) ")"; font-size:9pt; color:var(--n-300)}
       p,li{orphans:3; widows:3}
       h2,h3{page-break-after:avoid}
       section{break-inside:avoid}
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
     }
 
     body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:#0b1221; background:#fff; line-height:1.35;
-      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--n-300);
+      background:linear-gradient(180deg, var(--secondary) 0%, var(--n-800) 100%);
+      line-height:1.35;
     }
     .page{max-width:210mm; margin:0 auto; padding:14mm 12mm}
     header{
       display:grid; grid-template-columns:72px 1fr; gap:12px; align-items:center; margin-bottom:10mm;
-      border-bottom:2px solid #e2e8f0; padding-bottom:6mm;
+      border-bottom:2px solid rgba(255,255,255,.12); padding-bottom:6mm;
     }
-    .avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;border:1px solid #e2e8f0}
-    .avatar img{width:100%;height:100%;object-fit:cover;object-position:center} /* fix zoom */
-    h1{margin:0; font-family:Poppins, Inter, sans-serif; font-size:20pt}
-    .role{margin:.5mm 0 0; color:#334155; font-weight:600}
-    .micro{margin:2mm 0 0; color:#475569; font-size:10.5pt}
+    .avatar{width:72px;height:72px;border-radius:50%;overflow:hidden;border:1px solid rgba(255,255,255,.18)}
+    .avatar img{width:100%;height:100%;object-fit:cover;object-position:center}
+    h1{margin:0; font-family:Poppins, Inter, sans-serif; font-size:20pt; color:#fff}
+    .role{margin:.5mm 0 0; color:#c7d2fe; font-weight:600}
+    .micro{margin:2mm 0 0; color:var(--n-300); font-size:10.5pt}
 
-    /* Layout 2 colonne */
     .cols{ display:grid; grid-template-columns:34% 1fr; gap:10mm }
-    h2{ margin:0 0 3mm; font-size:12pt; font-weight:700 }
-    h3{ margin:0 0 2mm; font-size:10.5pt; font-weight:700 }
+    h2{ margin:0 0 3mm; font-size:12pt; font-weight:700; color:#fff }
+    h3{ margin:0 0 2mm; font-size:10.5pt; font-weight:700; color:#fff }
     .section{ margin-bottom:8mm }
-    .muted{ color:#64748b }
+    .muted{ color:var(--n-500) }
 
-    ul{ margin:0; padding-left:4mm }
-    li{ margin:1.2mm 0 }
+    ul{ margin:0; padding-left:4mm } li{ margin:1.2mm 0 }
+    .tag{ display:inline-block; padding:2px 6px; border-radius:999px; border:1px solid rgba(255,255,255,.18); color:var(--n-300); font-size:9pt; margin:2px 4px 0 0; background:rgba(255,255,255,.06) }
 
-    .tag{ display:inline-block; padding:2px 6px; border-radius:999px; border:1px solid #cbd5e1; font-size:9pt; margin:2px 4px 0 0 }
-    .meter{ height:6px; border-radius:999px; background:#e2e8f0; overflow:hidden }
+    .meter{ height:6px; border-radius:999px; background:rgba(255,255,255,.12); overflow:hidden }
     .meter span{ display:block; height:100%; background:linear-gradient(90deg, var(--primary), var(--accent)); width:var(--w,0%) }
 
-    .contact-row{ display:flex; align-items:center; gap:6px; margin:1.5mm 0 }
-    .contact-row svg{ width:14px; height:14px; color:#0f172a }
+    .contact-row{ display:flex; align-items:center; gap:6px; margin:1.5mm 0; color:var(--n-300) }
+    .contact-row svg{ width:14px; height:14px; color:#E6F8F5 }
 
     .exp{ margin-bottom:5mm }
-    .exp .meta{ font-weight:600 }
-    .exp .detail{ margin:.5mm 0 2mm }
+    .exp .meta{ font-weight:600; color:#fff }
+    .exp .detail{ margin:.5mm 0 2mm; color:var(--n-300) }
     .exp .skills{ display:flex; flex-wrap:wrap; gap:4px }
 
-    footer{ margin-top:8mm; color:#64748b; font-size:9.5pt; text-align:center }
+    footer{ margin-top:8mm; color:var(--n-500); font-size:9.5pt; text-align:center }
   </style>
 </head>
 <body>
@@ -70,24 +71,27 @@
       <div class="avatar">
         <picture>
           <source srcset="assets/profile.jpg"/>
-          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect rx='60' width='120' height='120' fill='%23E2E8F0'/></svg>" alt="Foto profilo"/>
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect rx='60' width='120' height='120' fill='%23222'/></svg>" alt="Foto profilo"/>
         </picture>
       </div>
       <div>
         <h1>Giulio Banchini</h1>
         <div class="role">Full-Stack Web Developer & B2B Consultant</div>
-        <p class="micro">Professionista con esperienza nel settore IT e Telco, con background tecnico su infrastrutture server e assistenza software e con solida pratica nella consulenza commerciale B2B. Integra competenze tecniche (frontend e backend) con capacità relazionali per proporre soluzioni digitali efficaci e sostenibili.</p>
+        <p class="micro">
+          Professionista con esperienza nel settore IT e Telco, con un solido background tecnico nella gestione di infrastrutture server, assistenza software e consulenza commerciale B2B.
+          Attualmente Consulente Commerciale Business per Optima Italia, unisce competenze tecniche e capacità relazionali per offrire soluzioni digitali personalizzate.
+          Possiede conoscenze intermedie di sviluppo frontend (HTML, CSS, JavaScript) e backend (Python, SQL), con un approccio orientato al miglioramento continuo e all’innovazione.
+        </p>
       </div>
     </header>
 
     <div class="cols">
-      <!-- Colonna sx: contatti + skill -->
       <aside>
         <section class="section">
           <h2>Contatti</h2>
           <div class="contact-row">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6l8 6 8-6M4 6v12h16V6" stroke="currentColor" stroke-width="2"/></svg>
-            <a href="mailto:banchini.giulio@gmail.com">banchini.giulio@gmail.com</a>
+            <a href="mailto:banchini.giulio@gmail.com" style="color:#E6F8F5">banchini.giulio@gmail.com</a>
           </div>
           <div class="contact-row">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 4h4l3 7-2 2c1.5 3 4 5 7 6l2-2 7 3v4c-9 0-16-7-16-16z" stroke="currentColor" stroke-width="2"/></svg>
@@ -125,14 +129,13 @@
         </section>
       </aside>
 
-      <!-- Colonna dx: esperienze -->
       <section>
         <section class="section">
           <h2>Esperienze</h2>
 
           <div class="exp">
             <div class="meta">Consulente Commerciale Business — Optima Italia · lug 2025 → Presente</div>
-            <div class="detail muted">
+            <div class="detail">
               Gestione end-to-end del ciclo di vendita B2B su servizi Telco/Energy: sviluppo della pipeline, qualificazione e proposta commerciale,
               negoziazione e follow-up fino all’attivazione. Relazione con PMI e professionisti, lettura dei fabbisogni e definizione di soluzioni sostenibili in termini di costi e affidabilità.
               Utilizzo del CRM per forecast e reporting; coordinamento con back-office per onboarding e post-vendita.
@@ -144,7 +147,7 @@
 
           <div class="exp">
             <div class="meta">Store Manager — WindTre / Freeline srl · 2024 → 2025</div>
-            <div class="detail muted">
+            <div class="detail">
               Coordinamento del punto vendita: gestione stock, procedure commerciali e assistenza clienti su attivazioni e migrazioni.
               Monitoraggio KPI e qualità del servizio, utilizzo di CRM/ERP per ordini e anagrafiche, supporto tecnico di primo livello con focus sulla soddisfazione del cliente.
             </div>
@@ -155,7 +158,7 @@
 
           <div class="exp">
             <div class="meta">TC & CC Manager — Kodland · 2023 → 2024</div>
-            <div class="detail muted">
+            <div class="detail">
               Supporto tecnico e organizzativo per corsi online, comunicazione con studenti e famiglie, pre-vendita pacchetti formativi.
               Contributo a localizzazione/rielaborazione di materiali e script marketing; gestione operativa di ticket e onboarding.
             </div>
@@ -166,7 +169,7 @@
 
           <div class="exp">
             <div class="meta">Tecnico IT — Euroinformatica · 2018 → 2021</div>
-            <div class="detail muted">
+            <div class="detail">
               Assistenza software/hardware, configurazione ambienti client/server, periferiche e rete.
               Aggiornamenti applicativi, compatibilità e troubleshooting; basi operative su MS SQL e Oracle SQL.
             </div>
