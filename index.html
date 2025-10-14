@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Giulio Banchini — UX/UI Designer & Frontend Engineer · Portfolio CV</title>
-  <meta name="description" content="Portfolio CV di Giulio Banchini — UX/UI Designer & Frontend Engineer. Sommario, competenze, esperienze (Optima Italia, WindTre/Freeline, Kodland, Euroinformatica), progetti e contatti.">
-  <meta property="og:title" content="Giulio Banchini — UX/UI Designer & Frontend Engineer">
-  <meta property="og:description" content="CV e portfolio professionale. Competenze, risultati, progetti selezionati.">
+  <title>Giulio Banchini — Full-Stack Web Developer & B2B Consultant · CV</title>
+  <meta name="description" content="CV di Giulio Banchini — Full-Stack Web Developer & B2B Consultant. Competenze, esperienze (Optima Italia, WindTre/Freeline, Kodland, Euroinformatica), formazione e contatti.">
+  <meta property="og:title" content="Giulio Banchini — Full-Stack Web Developer & B2B Consultant">
+  <meta property="og:description" content="Competenze tecniche e commerciali, esperienze in Telco/Energy e IT, formazione e contatti.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="it_IT">
   <meta name="theme-color" content="#0B1221"/>
@@ -17,11 +17,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- Favicon data-URL -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1221'/%3E%3Cpath d='M16 40L30 18l8 10 10-14' stroke='%2300D1B2' stroke-width='5' fill='none'/%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%233B1C67'/%3E%3Cpath d='M16 40L30 18l8 10 10-14' stroke='%2300D1B2' stroke-width='5' fill='none'/%3E%3C/svg%3E">
 
   <style>
     :root{
-      --primary:#2D6CDF; --secondary:#0B1221; --accent:#00D1B2;
+      --primary:#2D6CDF;       /* blu */
+      --secondary:#3B1C67;     /* viola profondo */
+      --accent:#00D1B2;        /* ciano */
       --n-900:#0F172A; --n-800:#1E293B; --n-500:#94A3B8; --n-100:#F1F5F9; --white:#FFF;
       --radius:14px; --shadow-1:0 4px 14px rgba(0,0,0,.12); --shadow-2:0 10px 24px rgba(0,0,0,.18);
       --maxw:920px;
@@ -34,42 +36,46 @@
       background:linear-gradient(180deg, var(--secondary) 0%, var(--n-900) 100%);
       line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
     }
-    a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
     :focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:8px}
     .wrap{max-width:var(--maxw); margin-inline:auto; padding:24px}
 
+    /* Nav: sticky, una riga, link ridotti e CTA inline */
     nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(10px);
       background:rgba(15,23,42,.7); border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 24px}
-    .brand{display:flex; align-items:center; gap:12px; font-family:Poppins, Inter, sans-serif}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 24px; flex-wrap:nowrap}
+    .brand{display:flex; align-items:center; gap:12px; font-family:Poppins, Inter, sans-serif; white-space:nowrap}
     .brand .logo{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--secondary);box-shadow:var(--shadow-1);border:1px solid rgba(255,255,255,.06)}
     .brand .logo svg{width:18px;height:18px}
-    .nav-links{display:flex; gap:14px; flex-wrap:wrap}
-    .nav-links a{padding:8px 12px; border-radius:10px; color:var(--n-100)}
+    .nav-links{display:flex; gap:12px; align-items:center; flex-wrap:nowrap; white-space:nowrap; overflow:auto}
+    .nav-links a{padding:8px 10px; border-radius:10px; color:var(--n-100)}
     .nav-links a:hover{background:rgba(255,255,255,.06)}
-    .cta{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .btn{appearance:none;border:0;cursor:pointer;border-radius:12px;padding:10px 14px;font-weight:600;transition:transform .06s ease, box-shadow .2s ease, background .2s ease}
+    .cta{display:flex; gap:10px; align-items:center; flex-wrap:nowrap}
+    .btn{appearance:none;border:0;cursor:pointer;border-radius:12px;padding:10px 14px;font-weight:600;transition:transform .06s ease, box-shadow .2s ease, background .2s ease; white-space:nowrap}
     .btn-primary{background:var(--primary); color:#fff; box-shadow:var(--shadow-1)}
     .btn-primary:hover{transform:translateY(-1px); box-shadow:var(--shadow-2)}
     .btn-ghost{background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.08)}
     .btn-ghost:hover{background:rgba(255,255,255,.1)}
 
+    /* Hero */
     header.hero{padding:36px 0 16px}
     .hero-inner{display:grid; grid-template-columns:96px 1fr; gap:20px; align-items:center}
     @media (min-width:720px){.hero-inner{grid-template-columns:128px 1fr}}
     .avatar{width:96px;height:96px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.14);box-shadow:var(--shadow-1);background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02))}
+    .avatar img{width:100%; height:100%; object-fit:cover; object-position:center;} /* fix zoom */
     .title h1{margin:0; font-family:Poppins, Inter, sans-serif; font-weight:700; line-height:1.15; font-size:clamp(28px, 5vw, 40px)}
     .title p.role{margin:6px 0 10px; color:#c7d2fe}
     .pills{display:flex; gap:8px; flex-wrap:wrap}
     .pill{background:rgba(45,108,223,.15); color:#dbeafe; border:1px solid rgba(45,108,223,.35); padding:6px 10px; border-radius:999px; font-size:14px; box-shadow:var(--shadow-1)}
 
+    /* Sezioni */
     section{margin:28px 0}
     section .card{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow-1); padding:18px}
     section h2{margin:0 0 12px; font-family:Poppins, Inter, sans-serif; font-weight:700; letter-spacing:.2px}
     .muted{color:var(--n-500)}
 
-    .summary{font-size:1rem}
-
+    /* Competenze */
     .chips{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px}
     .chip{padding:6px 10px; border-radius:999px; background:#0f172a; border:1px solid rgba(255,255,255,.08)}
     .bars{display:grid; gap:10px}
@@ -78,6 +84,7 @@
     .meter{height:10px; background:#0b1221; border:1px solid rgba(255,255,255,.1); border-radius:999px; overflow:hidden}
     .meter>span{display:block; height:100%; background:linear-gradient(90deg, var(--primary), var(--accent)); width:var(--w,0%)}
 
+    /* Esperienze */
     .timeline{position:relative; padding-left:22px; display:grid; gap:16px}
     .timeline::before{content:""; position:absolute; left:8px; top:4px; bottom:4px; width:2px; background:rgba(255,255,255,.12)}
     .t-item{position:relative}
@@ -85,12 +92,7 @@
     .kpi{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px}
     .badge{font-size:.8rem; padding:2px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
 
-    .grid{display:grid; gap:14px}
-    @media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
-    .p-card{display:flex; flex-direction:column; gap:10px}
-    .thumb{aspect-ratio:16/9; border-radius:12px; overflow:hidden; background:linear-gradient(135deg, rgba(45,108,223,.15), rgba(0,209,178,.12)); border:1px solid rgba(255,255,255,.08)}
-    .stack{font-size:.9rem; color:#cbd5e1}
-
+    /* Contatti */
     .contacts{display:grid; gap:10px}
     .c-row{display:flex; align-items:center; gap:10px}
     .icon{width:18px; height:18px; flex:0 0 18px; color:#e2e8f0}
@@ -105,31 +107,32 @@
     "@context":"https://schema.org",
     "@type":"Person",
     "name":"Giulio Banchini",
-    "jobTitle":"UX/UI Designer & Frontend Engineer",
+    "jobTitle":"Full-Stack Web Developer & B2B Consultant",
     "email":"mailto:banchini.giulio@gmail.com",
-    "url":"{{sito_personale}}",
+    "url":"",
     "image":"assets/profile.jpg",
     "address":{"@type":"PostalAddress","addressLocality":"Pistoia"},
-    "sameAs":["{{linkedin}}","{{github}}"]
+    "sameAs":[]
   }
   </script>
 </head>
 <body>
+  <!-- NAV -->
   <nav aria-label="Navigazione principale">
     <div class="nav-inner wrap">
       <div class="brand">
         <span class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="6" fill="#0B1221" /><path d="M6 14l4-6 3 3 5-7" stroke="#00D1B2" stroke-width="2" fill="none"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="6" fill="#3B1C67" /><path d="M6 14l4-6 3 3 5-7" stroke="#00D1B2" stroke-width="2" fill="none"/></svg>
         </span>
         <strong>Giulio Banchini</strong>
       </div>
       <div class="nav-links" role="navigation">
-        <a href="#sommario">Sommario</a>
+        <!-- RIMOSSO: Sommario -->
         <a href="#competenze">Competenze</a>
         <a href="#esperienze">Esperienze</a>
-        <a href="#progetti">Progetti</a>
         <a href="#formazione">Formazione</a>
         <a href="#contatti">Contatti</a>
+        <!-- RIMOSSO: Progetti -->
       </div>
       <div class="cta">
         <a class="btn btn-ghost" href="cv-compact.html" title="Apri e stampa in PDF">Scarica PDF compatto</a>
@@ -138,70 +141,71 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <header class="hero">
     <div class="wrap hero-inner">
       <div class="avatar" aria-label="Foto profilo">
         <picture>
           <source srcset="assets/profile.jpg" />
-          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%232D6CDF' offset='0'/><stop stop-color='%2300D1B2' offset='1'/></linearGradient></defs><rect rx='60' width='120' height='120' fill='url(%23g)'/></svg>" alt="Placeholder profilo"/>
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%232D6CDF' offset='0'/><stop stop-color='%2300D1B2' offset='1'/></linearGradient></defs><rect rx='60' width='120' height='120' fill='url(%23g)'/></svg>" alt="Foto profilo"/>
         </picture>
       </div>
       <div class="title">
         <h1>Giulio Banchini</h1>
-        <p class="role">UX/UI Designer & Frontend Engineer</p>
+        <p class="role">Full-Stack Web Developer & B2B Consultant</p>
         <div class="pills" aria-label="Competenze distintive">
-          <span class="pill">UX/UI Design</span>
           <span class="pill">Frontend (HTML/CSS/JS)</span>
-          <span class="pill">Vendite B2B</span>
+          <span class="pill">Backend (Python/SQL)</span>
+          <span class="pill">B2B Energy-Telco Consultant</span>
         </div>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <section id="sommario" aria-labelledby="sommario-h">
-      <div class="card summary">
-        <h2 id="sommario-h">Sommario</h2>
-        <p>{{sommario}}</p>
-      </div>
-    </section>
-
+    <!-- RIMOSSA: Sezione Sommario visiva; il testo del sommario è inglobato nella parte esperienze/ruolo -->
+    <!-- COMPETENZE -->
     <section id="competenze" aria-labelledby="competenze-h">
       <div class="card">
         <h2 id="competenze-h">Competenze</h2>
-        <p class="muted">Autovalutazione (0–100). Modifica i valori in base alla tua seniority.</p>
-
         <div class="chips" aria-label="Categorie competenze">
-          <span class="chip">Frontend</span><span class="chip">Backend</span><span class="chip">UX/UI</span><span class="chip">Tooling</span>
+          <span class="chip">Frontend</span><span class="chip">Backend</span><span class="chip">UX/UI</span><span class="chip">Vendite B2B</span>
         </div>
-
         <div class="bars" id="skill-bars" aria-live="polite">
           <div class="bar"><div class="label"><span>HTML</span><strong>70</strong></div><div class="meter"><span style="--w:70%"></span></div></div>
           <div class="bar"><div class="label"><span>CSS</span><strong>70</strong></div><div class="meter"><span style="--w:70%"></span></div></div>
           <div class="bar"><div class="label"><span>JavaScript</span><strong>65</strong></div><div class="meter"><span style="--w:65%"></span></div></div>
           <div class="bar"><div class="label"><span>Python</span><strong>60</strong></div><div class="meter"><span style="--w:60%"></span></div></div>
           <div class="bar"><div class="label"><span>SQL</span><strong>60</strong></div><div class="meter"><span style="--w:60%"></span></div></div>
-          <p class="muted">Aggiungi/integra qui: {{competenze_tecniche}}</p>
+          <div class="bar"><div class="label"><span>Vendite B2B</span><strong>75</strong></div><div class="meter"><span style="--w:75%"></span></div></div>
         </div>
-
-        <div style="margin-top:12px"><strong>Competenze trasversali:</strong> {{soft_skills}}</div>
+        <div style="margin-top:12px"><strong>Soft Skills:</strong> Office Suite; Photoshop; PC Building</div>
       </div>
     </section>
 
+    <!-- ESPERIENZE -->
     <section id="esperienze" aria-labelledby="esperienze-h">
       <div class="card">
         <h2 id="esperienze-h">Esperienze</h2>
-        <div class="timeline">
+        <p class="muted" style="margin-top:-6px">
+          Professionista con esperienza nel settore IT e Telco, con background tecnico su infrastrutture e assistenza software, oggi focalizzato su soluzioni digitali e consulenza commerciale B2B.
+        </p>
 
+        <div class="timeline">
           <article class="t-item">
             <div class="kar">
               <div class="role">Consulente Commerciale Business — Optima Italia · lug 2025 → Presente</div>
-              <div class="where muted">Italia · B2B · Telco/Energy</div>
-              <div class="desc"><strong>Problema:</strong> lead B2B non qualificati → <strong>Azione:</strong> qualificazione pipeline, script consulenziali, CRM → <strong>Risultato:</strong> <em>{{inserisci KPI: es. +32% lead qualificati / +X% conversione}}</em></div>
+              <div class="where muted">Italia · Telco & Energy · B2B</div>
+              <div class="desc">
+                Gestione del ciclo di vendita B2B (prospecting, qualificazione, demo, negoziazione e chiusura) su servizi Telco/Energy.
+                Cura del rapporto con PMI e professionisti, analisi dei fabbisogni e proposta di offerte integrate con attenzione a TCO e affidabilità del servizio.
+                Utilizzo del CRM per pipeline e forecast, coordinamento con back-office per attivazioni e post-vendita.
+              </div>
               <div class="kpi">
-                <span class="badge">KPI: {{KPI_1}}</span>
-                <span class="badge">Ciclo: {{KPI_2}}</span>
-                <span class="badge">NPS: {{KPI_3}}</span>
+                <span class="badge">Vendite B2B</span>
+                <span class="badge">CRM & Forecast</span>
+                <span class="badge">Negoziazione</span>
+                <span class="badge">Telco/Energy</span>
               </div>
             </div>
           </article>
@@ -209,68 +213,89 @@
           <article class="t-item">
             <div class="kar">
               <div class="role">Store Manager — WindTre / Freeline srl · 2024 → 2025</div>
-              <div class="where muted">Retail Telco</div>
-              <div class="desc">**Problema** → **Azione** → **Risultato (metrica)** · Stack/Tool: CRM, ERP, gestione inventario, tecniche di vendita.</div>
-              <div class="kpi"><span class="badge">{{KPI_retail_1}}</span><span class="badge">{{KPI_retail_2}}</span></div>
+              <div class="where muted">Retail Telco · Front-office & Operations</div>
+              <div class="desc">
+                Responsabile punto vendita: coordinamento attività giornaliere, gestione stock e processi commerciali.
+                Assistenza clienti su attivazioni, migrazioni e assistenza tecnica di primo livello; monitoraggio KPI di vendita e customer care.
+                Applicazione di pratiche CRM/ERP per ordini e anagrafiche, con focus su chiarezza e soddisfazione del cliente.
+              </div>
+              <div class="kpi">
+                <span class="badge">Gestione Punto Vendita</span>
+                <span class="badge">Customer Care</span>
+                <span class="badge">CRM/ERP</span>
+                <span class="badge">Procedure Telco</span>
+              </div>
             </div>
           </article>
 
           <article class="t-item">
             <div class="kar">
               <div class="role">TC & CC Manager — Kodland · 2023 → 2024</div>
-              <div class="where muted">EdTech</div>
-              <div class="desc">Amministrazione e assistenza tecnica; pre-sale pacchetti; gestione marketing (traduzioni/rielaborazione script). <span class="muted">Fonte CV</span></div>
+              <div class="where muted">EdTech · Supporto Tecnico & Pre-Sales</div>
+              <div class="desc">
+                Supporto tecnico e organizzativo per corsi online; comunicazioni con studenti e famiglie.
+                Contributo alle attività di pre-vendita pacchetti formativi e localizzazione/rielaborazione di materiali e script marketing.
+                Gestione operativa di ticket, onboarding e piccole iniziative di retention.
+              </div>
+              <div class="kpi">
+                <span class="badge">Assistenza Tecnica</span>
+                <span class="badge">Pre-Sales</span>
+                <span class="badge">Comunicazione</span>
+                <span class="badge">Ops EdTech</span>
+              </div>
             </div>
           </article>
 
           <article class="t-item">
             <div class="kar">
               <div class="role">Tecnico IT — Euroinformatica · 2018 → 2021</div>
-              <div class="where muted">Client/Server · MS SQL · Oracle SQL</div>
-              <div class="desc">Assistenza tecnica software/hardware; aggiornamenti software aziendali; configurazione architetture client/server; periferiche di rete. <span class="muted">Fonte CV</span></div>
+              <div class="where muted">Assistenza Software/Hardware · Client/Server</div>
+              <div class="desc">
+                Assistenza on-site e remota su software gestionali e sistemi; configurazione di ambienti client/server, periferiche e reti.
+                Aggiornamenti applicativi, verifiche di compatibilità e troubleshooting; basi su **MS SQL** e **Oracle SQL** per attività operative.
+              </div>
+              <div class="kpi">
+                <span class="badge">Assistenza IT</span>
+                <span class="badge">Client/Server</span>
+                <span class="badge">MS SQL · Oracle SQL</span>
+                <span class="badge">Troubleshooting</span>
+              </div>
             </div>
           </article>
-
         </div>
       </div>
     </section>
 
-    <section id="progetti" aria-labelledby="progetti-h">
-      <div class="card">
-        <h2 id="progetti-h">Progetti / Portfolio</h2>
-        <div class="grid">
-          <article class="p-card">
-            <div class="thumb" aria-hidden="true"></div>
-            <h3>Titolo Progetto</h3>
-            <p class="stack">Stack: … · Ruolo: …</p>
-            <p class="muted">Obiettivo → Soluzione → Risultato (1 riga).</p>
-            <p>{{portfolio_link_e_note}}</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
+    <!-- FORMAZIONE -->
     <section id="formazione" aria-labelledby="formazione-h">
       <div class="card">
         <h2 id="formazione-h">Formazione & Certificazioni</h2>
-        <p><strong>ITTS Fedi-Fermi Pistoia</strong> — Diploma Tecnico in Elettronica e Automazione. {{formazione}}</p>
+        <p><strong>ITTS Fedi-Fermi Pistoia</strong> — Diploma Tecnico in Elettronica e Automazione</p>
+        <p><strong>Regione Toscana</strong> — Corso di Social Media Marketing</p>
       </div>
     </section>
 
+    <!-- CONTATTI -->
     <section id="contatti" aria-labelledby="contatti-h">
       <div class="card contacts">
-        <h2 id="contatti-h">Contatti & Social</h2>
-        <div class="c-row"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 6l8 6 8-6M4 6v12h16V6" stroke="currentColor" stroke-width="2"/></svg><a href="mailto:banchini.giulio@gmail.com">banchini.giulio@gmail.com</a></div>
-        <div class="c-row"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M2 4h4l3 7-2 2c1.5 3 4 5 7 6l2-2 7 3v4c-9 0-16-7-16-16z" stroke="currentColor" stroke-width="2"/></svg><span>+39 3898451878</span></div>
-        <div class="c-row"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 5 5 5 9c0 7 7 13 7 13s7-6 7-13c0-4-3-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="currentColor"/></svg><span>Pistoia (IT)</span></div>
-        <div class="c-row"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/><path d="M7 17V7h3v10H7zm7 0h-3v-6h3v6zm3 0h-3V11h3v6z" fill="currentColor"/></svg><a href="{{linkedin}}">LinkedIn</a></div>
-        <div class="c-row"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M9 19c-4 0-7-3-7-7s3-7 7-7c3 0 5 2 5 2h3l-2 3s1 2 1 4c0 4-3 7-7 7zm0-4a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="2"/></svg><a href="{{github}}">GitHub</a></div>
-        <div class="c-row"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 12l8-9 2 6 8 3-8 3-2 6-8-9z" stroke="currentColor" stroke-width="2"/></svg><a href="{{sito_personale}}">Sito personale</a></div>
+        <h2 id="contatti-h">Contatti</h2>
+        <div class="c-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6l8 6 8-6M4 6v12h16V6" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="mailto:banchini.giulio@gmail.com">banchini.giulio@gmail.com</a>
+        </div>
+        <div class="c-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 4h4l3 7-2 2c1.5 3 4 5 7 6l2-2 7 3v4c-9 0-16-7-16-16z" stroke="currentColor" stroke-width="2"/></svg>
+          <span>+39 389 845 1878</span>
+        </div>
+        <div class="c-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8 2 5 5 5 9c0 7 7 13 7 13s7-6 7-13c0-4-3-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="currentColor"/></svg>
+          <span>Pistoia (IT)</span>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="wrap">© <span id="y"></span> Giulio Banchini — CV & Portfolio.</footer>
+  <footer class="wrap">© <span id="y"></span> Giulio Banchini — CV.</footer>
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
