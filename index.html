@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{nome_cognome}} — {{ruolo}} · Portfolio CV</title>
+  <meta name="description" content="Portfolio CV di {{nome_cognome}} — {{ruolo}}. Sommario, competenze, esperienze, progetti, formazione e contatti." />
+  <meta property="og:title" content="{{nome_cognome}} — {{ruolo}}" />
+  <meta property="og:description" content="CV e portfolio professionale. Competenze, risultati e progetti selezionati." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="it_IT" />
+  <meta name="theme-color" content="#0B1221"/>
+
+  <!-- Google Fonts (titoli: Poppins, corpo: Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Favicon SVG inline come data URL -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1221'/%3E%3Cpath d='M16 40L30 18l8 10 10-14' stroke='%2300D1B2' stroke-width='5' fill='none'/%3E%3C/svg%3E">
+
+  <style>
+    /* =========================
+       Design Tokens
+       ========================= */
+    :root{
+      --primary:#2D6CDF;
+      --secondary:#0B1221;
+      --accent:#00D1B2;
+      --n-900:#0F172A;
+      --n-800:#1E293B;
+      --n-500:#94A3B8;
+      --n-100:#F1F5F9;
+      --white:#FFFFFF;
+      --radius:14px;
+      --shadow-1:0 4px 14px rgba(0,0,0,.12);
+      --shadow-2:0 10px 24px rgba(0,0,0,.18);
+      --maxw:920px;
+    }
+
+    /* =========================
+       Base / Reset
+       ========================= */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--n-100);
+      background:linear-gradient(180deg, var(--secondary) 0%, var(--n-900) 100%);
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    img{max-width:100%; height:auto; display:block}
+
+    /* Focus visibile per accessibilità */
+    :focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:8px}
+
+    /* Layout container */
+    .wrap{max-width:var(--maxw); margin-inline:auto; padding:24px}
+
+    /* =========================
+       Nav Sticky
+       ========================= */
+    nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(15,23,42,.7);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 24px}
+    .brand{display:flex; align-items:center; gap:12px; font-family:Poppins, Inter, sans-serif}
+    .brand .logo{
+      width:28px; height:28px; border-radius:8px; display:grid; place-items:center;
+      background:var(--secondary); box-shadow:var(--shadow-1); border:1px solid rgba(255,255,255,.06)
+    }
+    .brand .logo svg{width:18px; height:18px}
+    .nav-links{display:flex; gap:14px; flex-wrap:wrap}
+    .nav-links a{
+      padding:8px 12px; border-radius:10px; color:var(--n-100);
+    }
+    .nav-links a:hover{background:rgba(255,255,255,.06)}
+    .cta{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .btn{
+      appearance:none; border:0; cursor:pointer; border-radius:12px; padding:10px 14px;
+      font-weight:600; transition:transform .06s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn-primary{background:var(--primary); color:#fff; box-shadow:var(--shadow-1)}
+    .btn-primary:hover{transform:translateY(-1px); box-shadow:var(--shadow-2)}
+    .btn-ghost{background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.08)}
+    .btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+    /* =========================
+       Hero
+       ========================= */
+    header.hero{padding:36px 0 16px}
+    .hero-inner{display:grid; grid-template-columns:96px 1fr; gap:20px; align-items:center}
+    @media (min-width:720px){
+      .hero-inner{grid-template-columns:128px 1fr}
+    }
+    .avatar{
+      width:96px; height:96px; border-radius:50%;
+      overflow:hidden; border:2px solid rgba(255,255,255,.14); box-shadow:var(--shadow-1);
+      background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .title h1{
+      margin:0; font-family:Poppins, Inter, sans-serif; font-weight:700; line-height:1.15;
+      font-size:clamp(28px, 5vw, 40px);
+    }
+    .title p.role{margin:6px 0 10px; color:#c7d2fe}
+    .pills{display:flex; gap:8px; flex-wrap:wrap}
+    .pill{
+      background:rgba(45,108,223,.15); color:#dbeafe; border:1px solid rgba(45,108,223,.35);
+      padding:6px 10px; border-radius:999px; font-size:14px; box-shadow:var(--shadow-1)
+    }
+
+    /* =========================
+       Sections
+       ========================= */
+    section{margin:28px 0}
+    section .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-1);
+      padding:18px;
+    }
+    section h2{
+      margin:0 0 12px; font-family:Poppins, Inter, sans-serif; font-weight:700; letter-spacing:.2px
+    }
+    .muted{color:var(--n-500)}
+
+    /* Sommario */
+    .summary{font-size:1rem}
+
+    /* Competenze */
+    .chips{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px}
+    .chip{padding:6px 10px; border-radius:999px; background:#0f172a; border:1px solid rgba(255,255,255,.08)}
+    .bars{display:grid; gap:10px}
+    .bar{display:grid; gap:6px}
+    .bar .label{display:flex; justify-content:space-between; font-size:.95rem}
+    .meter{height:10px; background:#0b1221; border:1px solid rgba(255,255,255,.1); border-radius:999px; overflow:hidden}
+    .meter > span{display:block; height:100%; background:linear-gradient(90deg, var(--primary), var(--accent)); width:var(--w,0%)}
+
+    /* Esperienze - timeline */
+    .timeline{position:relative; padding-left:22px; display:grid; gap:16px}
+    .timeline::before{content:""; position:absolute; left:8px; top:4px; bottom:4px; width:2px; background:rgba(255,255,255,.12)}
+    .t-item{position:relative}
+    .t-item::before{
+      content:""; position:absolute; left:-18px; top:6px; width:10px; height:10px;
+      border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px rgba(0,209,178,.2)
+    }
+    .kar{display:flex; flex-direction:column; gap:6px}
+    .kar .role{font-weight:600}
+    .kar .where{color:#cbd5e1}
+    .kar .desc{color:#e2e8f0}
+
+    /* Portfolio cards */
+    .grid{display:grid; gap:14px}
+    @media(min-width:720px){ .grid{grid-template-columns:1fr 1fr} }
+    .p-card{display:flex; flex-direction:column; gap:10px}
+    .thumb{
+      aspect-ratio:16/9; border-radius:12px; overflow:hidden;
+      background:linear-gradient(135deg, rgba(45,108,223,.15), rgba(0,209,178,.12));
+      border:1px solid rgba(255,255,255,.08)
+    }
+    .stack{font-size:.9rem; color:#cbd5e1}
+
+    /* Contatti */
+    .contacts{display:grid; gap:10px}
+    .c-row{display:flex; align-items:center; gap:10px}
+    .icon{width:18px; height:18px; flex:0 0 18px; color:#e2e8f0}
+
+    /* Footer */
+    footer{padding:24px 0 60px; color:var(--n-500); font-size:.9rem}
+
+    /* Piccole migliorie */
+    .tooltip{position:relative}
+    .tooltip[title]{cursor:help}
+
+    /* Print hygiene (per sicurezza nel web) */
+    @media print {.no-print{display:none !important}}
+
+  </style>
+
+  <!-- JSON-LD schema.org/Person -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"{{nome_cognome}}",
+    "jobTitle":"{{ruolo}}",
+    "email":"mailto:{{email}}",
+    "url":"{{sito_personale}}",
+    "image":"assets/profile.jpg",
+    "address":{"@type":"PostalAddress","addressLocality":"{{città_paese}}"},
+    "sameAs":["{{linkedin}}","{{github}}"]
+  }
+  </script>
+</head>
+<body>
+  <!-- =========================
+       Nav
+       ========================= -->
+  <nav aria-label="Navigazione principale">
+    <div class="nav-inner wrap">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="6" fill="#0B1221" />
+            <path d="M6 14l4-6 3 3 5-7" stroke="#00D1B2" stroke-width="2" fill="none" />
+          </svg>
+        </span>
+        <strong>{{nome_cognome}}</strong>
+      </div>
+      <div class="nav-links" role="navigation">
+        <a href="#sommario">Sommario</a>
+        <a href="#competenze">Competenze</a>
+        <a href="#esperienze">Esperienze</a>
+        <a href="#progetti">Progetti</a>
+        <a href="#formazione">Formazione</a>
+        <a href="#contatti">Contatti</a>
+      </div>
+      <div class="cta">
+        <a class="btn btn-ghost tooltip" href="cv-compact.html" title="Apri e stampa in PDF">Scarica PDF compatto</a>
+        <a class="btn btn-primary" href="mailto:{{email}}">Contattami</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- =========================
+       Hero
+       ========================= -->
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <div class="avatar" aria-label="Foto profilo">
+        <!-- Se esiste /assets/profile.jpg la mostriamo, altrimenti placeholder -->
+        <picture>
+          <source srcset="assets/profile.jpg" />
+          <img src="data:image/svg+xml;utf8,
+            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'>
+              <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+              <stop stop-color='%232D6CDF' offset='0'/>
+              <stop stop-color='%2300D1B2' offset='1'/></linearGradient></defs>
+              <rect rx='60' width='120' height='120' fill='url(%23g)'/>
+              <text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle'
+                fill='white' font-family='Poppins' font-size='24'>{{nome_cognome | iniziali}}</text>
+            </svg>" alt="Placeholder profilo"/>
+        </picture>
+      </div>
+      <div class="title">
+        <h1>{{nome_cognome}}</h1>
+        <p class="role">{{ruolo}}</p>
+        <div class="pills" aria-label="Competenze distintive">
+          <span class="pill">{{pill_skill_1}}</span>
+          <span class="pill">{{pill_skill_2}}</span>
+          <span class="pill">{{pill_skill_3}}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ========================= Sommario ========================= -->
+    <section id="sommario" aria-labelledby="sommario-h">
+      <div class="card summary">
+        <h2 id="sommario-h">Sommario</h2>
+        <p>{{sommario}}</p>
+      </div>
+    </section>
+
+    <!-- ========================= Competenze ========================= -->
+    <section id="competenze" aria-labelledby="competenze-h">
+      <div class="card">
+        <h2 id="competenze-h">Competenze</h2>
+        <p class="muted">Le seguenti barre rappresentano un’autovalutazione (0–100).</p>
+
+        <!-- Chip di categorie -->
+        <div class="chips" aria-label="Categorie competenze">
+          <span class="chip">Frontend</span>
+          <span class="chip">Backend</span>
+          <span class="chip">UX/UI</span>
+          <span class="chip">Strumenti</span>
+        </div>
+
+        <!-- Barre: inserisci come 'Nome — Livello' separando con ';' nel testo sotto -->
+        <div class="bars" id="skill-bars" aria-live="polite">
+          <!-- Mantieni il testo come sorgente dei dati -->
+          <div class="bar" data-skill="HTML" data-level="80">
+            <div class="label"><span>HTML</span><strong>80</strong></div>
+            <div class="meter" aria-hidden="true"><span style="--w:80%"></span></div>
+          </div>
+          <div class="bar" data-skill="CSS" data-level="80">
+            <div class="label"><span>CSS</span><strong>80</strong></div>
+            <div class="meter"><span style="--w:80%"></span></div>
+          </div>
+          <div class="bar" data-skill="JavaScript" data-level="70">
+            <div class="label"><span>JavaScript</span><strong>70</strong></div>
+            <div class="meter"><span style="--w:70%"></span></div>
+          </div>
+          <div class="bar" data-skill="Python" data-level="60">
+            <div class="label"><span>Python</span><strong>60</strong></div>
+            <div class="meter"><span style="--w:60%"></span></div>
+          </div>
+          <div class="bar" data-skill="SQL" data-level="60">
+            <div class="label"><span>SQL</span><strong>60</strong></div>
+            <div class="meter"><span style="--w:60%"></span></div>
+          </div>
+          <!-- Puoi sostituire interamente questa sezione con {{competenze_tecniche}} + parsing manuale -->
+          <p class="muted">Sostituisci le voci sopra con i tuoi valori o incolla qui: {{competenze_tecniche}}</p>
+        </div>
+
+        <div style="margin-top:12px">
+          <strong>Competenze trasversali:</strong> {{soft_skills}}
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= Esperienze ========================= -->
+    <section id="esperienze" aria-labelledby="esperienze-h">
+      <div class="card">
+        <h2 id="esperienze-h">Esperienze</h2>
+        <div class="timeline">
+          <article class="t-item">
+            <div class="kar">
+              <div class="role">Ruolo — Azienda · Periodo</div>
+              <div class="where muted">Sede/Remoto</div>
+              <div class="desc">**Problema** → **Azione** → **Risultato con metrica** · Stack: …</div>
+            </div>
+          </article>
+
+          <!-- Copia/duplica i blocchi per ogni esperienza -->
+          <article class="t-item">
+            <div class="kar">
+              <div class="role">{{esperienze}}</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= Progetti/Portfolio ========================= -->
+    <section id="progetti" aria-labelledby="progetti-h">
+      <div class="card">
+        <h2 id="progetti-h">Progetti / Portfolio</h2>
+        <div class="grid">
+          <article class="p-card">
+            <div class="thumb" aria-hidden="true"></div>
+            <h3>Nome Progetto</h3>
+            <p class="stack">Stack: … · Ruolo: …</p>
+            <p class="muted">Contesto/risultato in 1 riga.</p>
+            <p>{{portfolio_link_e_note}}</p>
+          </article>
+          <!-- Aggiungi altre card -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= Formazione & Certificazioni ========================= -->
+    <section id="formazione" aria-labelledby="formazione-h">
+      <div class="card">
+        <h2 id="formazione-h">Formazione & Certificazioni</h2>
+        <p>{{formazione}}</p>
+      </div>
+    </section>
+
+    <!-- ========================= Contatti & Social ========================= -->
+    <section id="contatti" aria-labelledby="contatti-h">
+      <div class="card contacts">
+        <h2 id="contatti-h">Contatti & Social</h2>
+
+        <div class="c-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6l8 6 8-6M4 6v12h16V6" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="mailto:{{email}}">{{email}}</a>
+        </div>
+        <div class="c-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 4h4l3 7-2 2c1.5 3 4 5 7 6l2-2 7 3v4c-9 0-16-7-16-16z" stroke="currentColor" stroke-width="2"/></svg>
+          <span>{{telefono}}</span>
+        </div>
+        <div class="c-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8 2 5 5 5 9c0 7 7 13 7 13s7-6 7-13c0-4-3-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="currentColor"/></svg>
+          <span>{{città_paese}}</span>
+        </div>
+        <div class="c-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/><path d="M7 17V7h3v10H7zm7 0h-3v-6h3v6zm3 0h-3V11h3v6z" fill="currentColor"/></svg>
+          <a href="{{linkedin}}" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="c-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 19c-4 0-7-3-7-7s3-7 7-7c3 0 5 2 5 2h3l-2 3s1 2 1 4c0 4-3 7-7 7zm0-4a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="{{github}}" rel="noopener">GitHub</a>
+        </div>
+        <div class="c-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12l8-9 2 6 8 3-8 3-2 6-8-9z" stroke="currentColor" stroke-width="2"/></svg>
+          <a href="{{sito_personale}}" rel="noopener">Sito personale</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    © <span id="y"></span> {{nome_cognome}} — CV & Portfolio.
+  </footer>
+
+  <!-- JS opzionale: anno dinamico -->
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
