@@ -6,14 +6,9 @@ Contiene:
 - `CHANGELOG.md` — cronologia modifiche.
 
 ## Ultimi aggiornamenti (2025-10-14)
-- **Micro-anchor “Torna su”** (mobile): bolla trasparente, coerenza UI, auto-hide.
-- **Sfondo overscroll nero** (nessun flash bianco ai margini).
-- **Icone email/telefono** rese più riconoscibili.
-- **Logo nav** con **{ }** in stile “programmer”.
-
-## Personalizzazione rapida
-- Testi direttamente in `index.html` e `cv-compact.html`.
-- Foto in `assets/profile.jpg` (1000×1000px consigliati).
+- **“Torna su”** ora visibile anche su **desktop** (auto-compare dopo scroll).
+- **Sfondo fisso** ripristinato con **layer dedicato** a pieno schermo (evita flash e regressioni).
+- **Favicon SVG** con logo **{ }** impostata come icona della tab.
 
 ## Pubblicazione (GitHub Pages)
 1. Repo con i file.
