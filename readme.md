@@ -1,57 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.1">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
-</head>
-<body>
-<p class="p1"># CV Web + PDF Compatto — Template per Web Agency</p>
-<p class="p2"><br></p>
-<p class="p1">Questo repository contiene:</p>
-<p class="p1">- `index.html` — versione **web** responsive e interattiva (GitHub Pages ready).</p>
-<p class="p1">- `cv-compact.html` — versione **compatta** ottimizzata per **stampa A4** (esporta con `Ctrl/Cmd+P → Salva come PDF`).</p>
-<p class="p1">- `CHANGELOG.md` — cronologia modifiche.</p>
-<p class="p2"><br></p>
-<p class="p1">&gt; **Nota importante**: tutti i contenuti sono placeholder `{{...}}`. Sostituiscili con i tuoi dati reali. <span class="Apple-converted-space"> </span></p>
-<p class="p1">&gt; Nessun dato è inventato.</p>
-<p class="p2"><br></p>
-<p class="p1">---</p>
-<p class="p2"><br></p>
-<p class="p1">## Come personalizzare rapidamente</p>
-<p class="p2"><br></p>
-<p class="p1">Cerca e sostituisci i seguenti placeholder:</p>
-<p class="p2"><br></p>
-<p class="p1">- **Identità e ruolo**</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{nome_cognome}}`</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{ruolo}}` (es. “UX/UI Designer &amp; Frontend Engineer”)</p>
-<p class="p2"><br></p>
-<p class="p1">- **Contenuti**</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{sommario}}` — 3–4 frasi chiare e focalizzate sul valore.</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{competenze_tecniche}}` — elenco con livelli 0–100 (es. `HTML 80; CSS 80; JS 70; Python 60; SQL 60; …`).</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{soft_skills}}`</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{esperienze}}` — per ciascuna esperienza usa la formula **Problema → Azione → Risultato (metrica)** + stack.</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{formazione}}`</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{portfolio_link_e_note}}` — link + 1 riga di contesto/problema/risultato.</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{email}} · {{telefono}} · {{città_paese}} · {{linkedin}} · {{github}} · {{sito_personale}}`</p>
-<p class="p1"><span class="Apple-converted-space">  </span>- `{{pill_skill_1}}, {{pill_skill_2}}, {{pill_skill_3}}` — 3 skill distintive da mostrare nel “hero”.</p>
-<p class="p2"><br></p>
-<p class="p1">&gt; Suggerimento: per **Optima Italia** aggiungi un blocco in `{{esperienze}}` seguendo la struttura indicata, con periodo e metriche (es. % crescita, ticket/mesi, NPS, ecc.).</p>
-<p class="p2"><br></p>
-<p class="p1">---</p>
-<p class="p2"><br></p>
-<p class="p1">## Immagine profilo</p>
-<p class="p2"><br></p>
-<p class="p1">- Salva la tua foto in `assets/profile.jpg` (consigliato **1000x1000px**). <span class="Apple-converted-space"> </span></p>
-<p class="p1">- Il template applica un **mask-circle** e una **ombra morbida**.</p>
-<p class="p1">- Se non inserisci la foto, viene mostrato un **placeholder SVG**.</p>
-<p class="p2"><br></p>
-<p class="p1">Struttura directory minima:</p>
-</body>
-</html>
+# CV Web + PDF Compatto — Template per Web Agency (Giulio Banchini)
+
+Questo repository contiene:
+- `index.html` — versione **web** responsive e interattiva (GitHub Pages ready).
+- `cv-compact.html` — versione **compatta** ottimizzata per **stampa A4** (esporta con `Ctrl/Cmd+P → Salva come PDF`).
+- `CHANGELOG.md` — cronologia modifiche.
+
+## Cosa è stato aggiornato (richieste utente)
+- Ruolo: **Full-Stack Web Developer & B2B Consultant**
+- Pill hero: **Frontend (HTML/CSS/JS)** · **Backend (Python/SQL)** · **B2B Energy-Telco Consultant**
+- **Rimosse**: sezione *Progetti/Portfolio* e relativo link nel menu.
+- Menu superiore senza “Sommario”, tenendo **Competenze**, **Esperienze**, **Formazione**, **Contatti**.
+- CTA **“Scarica PDF compatto”** e **“Contattami”** sulla **stessa riga** in navbar.
+- Contatti ridotti a **Email**, **Telefono**, **Città/Paese** (rimossi LinkedIn/GitHub/Sito).
+- Foto profilo: corretto lo zoom con `object-fit: cover`.
+- Esperienze: **descrizioni professionali naturali**, senza schema Problema→Azione→Risultato.
+- Aggiunti **box “Skill correlate”** sotto ogni esperienza (web e compatto).
+- Rimossi commenti “di guida” visibili.
+
+## Come personalizzare rapidamente
+
+Cerca e sostituisci i seguenti placeholder, se presenti:
+- `{{sommario}}` — inserisci il tuo sommario definitivo (3–4 frasi).
+- `{{soft_skills}}` — elenco breve.
+- `{{formazione}}` — integra eventuali certificazioni aggiuntive.
+- Eventuali `{{KPI_...}}` se vuoi aggiungere numeri (non obbligatori).
+
+### Dati già impostati
+- **Nome**: Giulio Banchini
+- **Ruolo**: Full-Stack Web Developer & B2B Consultant
+- **Contatti**: email, telefono, città.
+- **Competenze tecniche**:
+  - HTML 70 · CSS 70 · JavaScript 65 · Python 60 · SQL 60 · Vendite B2B 75
+- **Soft skills**: Office Suite; Photoshop; PC Building
+- **Esperienze**: Optima Italia · WindTre/Freeline · Kodland · Euroinformatica
+- **Formazione**: ITTS Fedi-Fermi (Diploma) + Corso Regione Toscana (SMM)
+
+## Immagine profilo
+- Metti la tua foto in `assets/profile.jpg` (consigliato **1000×1000px**, < 250 KB).
+- Il template applica maschera circolare, bordo e ombra.
+- Se assente, compare un placeholder SVG.
+
+Struttura minima:
