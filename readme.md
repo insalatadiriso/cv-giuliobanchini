@@ -5,39 +5,38 @@ Questo repository contiene:
 - `cv-compact.html` — versione **compatta** ottimizzata per **stampa A4** (esporta con `Ctrl/Cmd+P → Salva come PDF`).
 - `CHANGELOG.md` — cronologia modifiche.
 
-## Cosa è stato aggiornato (richieste utente)
-- Ruolo: **Full-Stack Web Developer & B2B Consultant**
-- Pill hero: **Frontend (HTML/CSS/JS)** · **Backend (Python/SQL)** · **B2B Energy-Telco Consultant**
-- **Rimosse**: sezione *Progetti/Portfolio* e relativo link nel menu.
-- Menu superiore senza “Sommario”, tenendo **Competenze**, **Esperienze**, **Formazione**, **Contatti**.
-- CTA **“Scarica PDF compatto”** e **“Contattami”** sulla **stessa riga** in navbar.
-- Contatti ridotti a **Email**, **Telefono**, **Città/Paese** (rimossi LinkedIn/GitHub/Sito).
-- Foto profilo: corretto lo zoom con `object-fit: cover`.
-- Esperienze: **descrizioni professionali naturali**, senza schema Problema→Azione→Risultato.
-- Aggiunti **box “Skill correlate”** sotto ogni esperienza (web e compatto).
-- Rimossi commenti “di guida” visibili.
+## Aggiornamenti inclusi (richiesta 2025-10-14)
+- **Sommario** reintrodotto nella versione web (con il testo fornito).
+- **Sfondo fisso** con contenuti che scorrono sopra (trasparenza invariata).
+- **CV compatto in dark** con la stessa palette del principale.
+- Nessuna modifica ulteriore a palette/tipografia/layout oltre a quanto sopra.
+- Nessun commento superfluo lasciato nel markup.
 
 ## Come personalizzare rapidamente
+- Modifica direttamente i testi in `index.html` e `cv-compact.html`.
+- Sostituisci la foto in `assets/profile.jpg` (1000×1000px consigliati).
 
-Cerca e sostituisci i seguenti placeholder, se presenti:
-- `{{sommario}}` — inserisci il tuo sommario definitivo (3–4 frasi).
-- `{{soft_skills}}` — elenco breve.
-- `{{formazione}}` — integra eventuali certificazioni aggiuntive.
-- Eventuali `{{KPI_...}}` se vuoi aggiungere numeri (non obbligatori).
+## Pubblicare su GitHub Pages
+1. Crea un repo e carica i file.
+2. **Settings → Pages →** “Deploy from branch” → `main` (root).
+3. Apri l’URL `https://<utente>.github.io/<repo>/`.
 
-### Dati già impostati
-- **Nome**: Giulio Banchini
-- **Ruolo**: Full-Stack Web Developer & B2B Consultant
-- **Contatti**: email, telefono, città.
-- **Competenze tecniche**:
-  - HTML 70 · CSS 70 · JavaScript 65 · Python 60 · SQL 60 · Vendite B2B 75
-- **Soft skills**: Office Suite; Photoshop; PC Building
-- **Esperienze**: Optima Italia · WindTre/Freeline · Kodland · Euroinformatica
-- **Formazione**: ITTS Fedi-Fermi (Diploma) + Corso Regione Toscana (SMM)
+## Generare il PDF compatto
+1. Apri `cv-compact.html`.
+2. `Ctrl/Cmd+P → Salva come PDF`.
+3. **Scala 100%**, **Margini standard/minimi** a piacere, “Stampa sfondi” facoltativo.
+4. Il layout è pensato per **≤ 2 pagine A4** (dipende dalla lunghezza dei testi).
 
-## Immagine profilo
-- Metti la tua foto in `assets/profile.jpg` (consigliato **1000×1000px**, < 250 KB).
-- Il template applica maschera circolare, bordo e ombra.
-- Se assente, compare un placeholder SVG.
+## Design system (coerente web/print)
+- **Colori**: Primario `#2D6CDF` · Secondario `#3B1C67` (viola) · Accento `#00D1B2`  
+  Neutri: `#0F172A`, `#1E293B`, `#94A3B8`, `#F1F5F9`, `#FFFFFF`
+- **Tipografia**: Titoli **Poppins**, corpo **Inter** (fallback system-ui)
+- **Accessibilità**: WCAG AA, focus visibile, semantica pulita.
 
-Struttura minima:
+## CHECKLIST DI VERIFICA
+- [ ] Contrasto AA superato  
+- [ ] Test mobile (360–414px), tablet (~768px), desktop (≥1280px)  
+- [ ] Link “Scarica PDF compatto” funzionante  
+- [ ] Stampa A4: massimo 2 pagine, nessun taglio di sezioni  
+- [ ] Validazione HTML5 senza errori critici  
+- [ ] Nessun dato inventato
