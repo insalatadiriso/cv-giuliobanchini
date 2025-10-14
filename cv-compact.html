@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{{nome_cognome}} — CV compatto</title>
+
+  <!-- Font (stessa famiglia per coerenza tipografica) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Token coerenti con index.html */
+    :root{
+      --primary:#2D6CDF; --secondary:#0B1221; --accent:#00D1B2;
+      --n-900:#0F172A; --n-800:#1E293B; --n-500:#94A3B8; --n-100:#F1F5F9; --white:#fff;
+      --radius:12px;
+    }
+    @page{ size:A4; margin:12mm }
+    @media print{
+      a[href]::after{ content:" (" attr(href) ")"; font-size:9pt; color:#475569 }
+      .no-print{ display:none !important }
+      /* Evita orfani/vedove */
+      p, li{ orphans:3; widows:3 }
+      h2, h3{ page-break-after:avoid }
+      section{ break-inside:avoid }
+    }
+
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#0b1221; background:#fff; line-height:1.35;
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
+    .page{ max-width:210mm; margin:0 auto; padding:14mm 12mm }
+    header{
+      display:grid; grid-template-columns:72px 1fr; gap:12px; align-items:center; margin-bottom:10mm;
+      border-bottom:2px solid #e2e8f0; padding-bottom:6mm;
+    }
+    .avatar{
+      width:72px; height:72px; border-radius:50%; overflow:hidden; border:1px solid #e2e8f0;
+    }
+    h1{ margin:0; font-family:Poppins, Inter, sans-serif; font-size:20pt }
+    .role{ margin:.5mm 0 0; color:#334155; font-weight:600 }
+    .micro{ margin:2mm 0 0; color:#475569; font-size:10.5pt }
+
+    /* Layout 2 colonne */
+    .cols{ display:grid; grid-template-columns:34% 1fr; gap:10mm }
+    h2{ margin:0 0 3mm; font-size:12pt; font-weight:700 }
+    h3{ margin:0 0 2mm; font-size:10.5pt; font-weight:700 }
+    .section{ margin-bottom:8mm }
+    .muted{ color:#64748b }
+
+    ul{ margin:0; padding-left:4mm }
+    li{ margin:1.2mm 0 }
+
+    .tag{ display:inline-block; padding:2px 6px; border-radius:999px; border:1px solid #cbd5e1; font-size:9pt; margin:2px 4px 0 0 }
+    .meter{ height:6px; border-radius:999px; background:#e2e8f0; overflow:hidden }
+    .meter span{ display:block; height:100%; background:linear-gradient(90deg, var(--primary), var(--accent)); width:var(--w,0%) }
+
+    .contact-row{ display:flex; align-items:center; gap:6px; margin:1.5mm 0 }
+    .contact-row svg{ width:14px; height:14px; color:#0f172a }
+
+    .exp{ margin-bottom:5mm }
+    .exp .meta{ font-weight:600 }
+    .exp .detail{ margin:.5mm 0 0 }
+
+    footer{ margin-top:8mm; color:#64748b; font-size:9.5pt; text-align:center }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="avatar">
+        <picture>
+          <source srcset="assets/profile.jpg"/>
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect rx='60' width='120' height='120' fill='%23E2E8F0'/></svg>" alt="Foto profilo"/>
+        </picture>
+      </div>
+      <div>
+        <h1>{{nome_cognome}}</h1>
+        <div class="role">{{ruolo}}</div>
+        <p class="micro">{{sommario}}</p>
+      </div>
+    </header>
+
+    <div class="cols">
+      <!-- Colonna sx: contatti + skill -->
+      <aside>
+        <section class="section">
+          <h2>Contatti</h2>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6l8 6 8-6M4 6v12h16V6" stroke="currentColor" stroke-width="2"/></svg>
+            <a href="mailto:{{email}}">{{email}}</a>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 4h4l3 7-2 2c1.5 3 4 5 7 6l2-2 7 3v4c-9 0-16-7-16-16z" stroke="currentColor" stroke-width="2"/></svg>
+            <span>{{telefono}}</span>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8 2 5 5 5 9c0 7 7 13 7 13s7-6 7-13c0-4-3-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="currentColor"/></svg>
+            <span>{{città_paese}}</span>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/><path d="M7 17V7h3v10H7zm7 0h-3v-6h3v6zm3 0h-3V11h3v6z" fill="currentColor"/></svg>
+            <a href="{{linkedin}}">LinkedIn</a>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 19c-4 0-7-3-7-7s3-7 7-7c3 0 5 2 5 2h3l-2 3s1 2 1 4c0 4-3 7-7 7zm0-4a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" stroke-width="2"/></svg>
+            <a href="{{github}}">GitHub</a>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 12l8-9 2 6 8 3-8 3-2 6-8-9z" stroke="currentColor" stroke-width="2"/></svg>
+            <a href="{{sito_personale}}">Sito personale</a>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Competenze</h2>
+          <div class="tag">Frontend</div>
+          <div class="tag">Backend</div>
+          <div class="tag">UX/UI</div>
+          <div class="tag">Tooling</div>
+
+          <div style="margin-top:3mm">
+            <!-- Esempio barre, sostituisci i valori o rimpiazza con {{competenze_tecniche}} -->
+            <div style="margin:2.5mm 0">
+              <div>HTML</div><div class="meter"><span style="--w:80%"></span></div>
+            </div>
+            <div style="margin:2.5mm 0">
+              <div>CSS</div><div class="meter"><span style="--w:80%"></span></div>
+            </div>
+            <div style="margin:2.5mm 0">
+              <div>JavaScript</div><div class="meter"><span style="--w:70%"></span></div>
+            </div>
+            <div style="margin:2.5mm 0">
+              <div>Python</div><div class="meter"><span style="--w:60%"></span></div>
+            </div>
+            <div style="margin:2.5mm 0">
+              <div>SQL</div><div class="meter"><span style="--w:60%"></span></div>
+            </div>
+            <p class="muted" style="margin-top:2mm">Oppure incolla: {{competenze_tecniche}}</p>
+          </div>
+
+          <div style="margin-top:4mm">
+            <h3>Soft Skills</h3>
+            <p>{{soft_skills}}</p>
+          </div>
+
+          <div style="margin-top:4mm">
+            <h3>Formazione & Certificazioni</h3>
+            <p>{{formazione}}</p>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Colonna dx: esperienze + progetti -->
+      <section>
+        <section class="section">
+          <h2>Esperienze</h2>
+
+          <!-- Blocchi esperienza (duplicabili) -->
+          <div class="exp">
+            <div class="meta">Ruolo — Azienda · Periodo</div>
+            <div class="detail muted">**Problema** → **Azione** → **Risultato (metrica)** · Stack: …</div>
+          </div>
+
+          <div class="exp">
+            <div class="meta">{{esperienze}}</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>Progetti / Portfolio</h2>
+          <ul>
+            <li>{{portfolio_link_e_note}}</li>
+          </ul>
+        </section>
+      </section>
+    </div>
+
+    <footer>
+      {{nome_cognome}} — {{email}} · {{telefono}} · {{città_paese}}
+    </footer>
+  </div>
+</body>
+</html>
