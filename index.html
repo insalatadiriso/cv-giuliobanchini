@@ -31,12 +31,13 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    /* Lo sfondo del root usa lo stesso gradiente per coprire l'overscroll iOS (no bande nere) */
+
+    /* Margini neri (desktop e mobile) */
     html{
-      background:linear-gradient(180deg, var(--secondary) 0%, var(--n-900) 100%);
+      background:#000; /* nero ai bordi/overscroll */
     }
 
-    /* BG fisso come layer dedicato, robusto su tutti i browser */
+    /* BG fisso come layer dedicato */
     .bg-fixed{
       position:fixed; inset:0; z-index:-1; pointer-events:none;
       background:linear-gradient(180deg, var(--secondary) 0%, var(--n-900) 100%);
@@ -46,7 +47,7 @@
       margin:0;
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--n-100);
-      background:transparent; /* lo sfondo è gestito da html + .bg-fixed */
+      background:transparent;
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
@@ -74,6 +75,7 @@
     .nav-links{display:flex; gap:12px; align-items:center; flex-wrap:nowrap; white-space:nowrap; overflow:auto}
     .nav-links a{padding:8px 10px; border-radius:10px; color:var(--n-100)}
     .nav-links a:hover{background:rgba(255,255,255,.06)}
+
     .cta{display:flex; gap:10px; align-items:center; flex-wrap:nowrap}
     .btn{appearance:none;border:0;cursor:pointer;border-radius:12px;padding:10px 14px;font-weight:600;transition:transform .06s ease, box-shadow .2s ease, background .2s ease; white-space:nowrap}
     .btn-primary{background:var(--primary); color:#fff; box-shadow:var(--shadow-1)}
@@ -81,10 +83,13 @@
     .btn-ghost{background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.08)}
     .btn-ghost:hover{background:rgba(255,255,255,.1)}
     .pdf-link{display:inline-block}
-    /* MOBILE: nascondo nav-links e PDF, appare burger */
+    /* CTA Contattami desktop (ripristinata) */
+    .btn-primary.desktop{display:inline-block}
+    /* MOBILE: nascondo nav-links e PDF; lascio solo burger; nascondo CTA desktop */
     @media (max-width:767px){
       .nav-links{display:none}
-      .pdf-link{display:none} /* rimuovi scarica PDF su mobile */
+      .pdf-link{display:none}
+      .btn-primary.desktop{display:none}
     }
 
     /* Burger button */
@@ -93,14 +98,19 @@
     .burger svg{width:22px;height:22px}
     @media (max-width:767px){ .burger{display:inline-flex} }
 
-    /* Mobile menu (overlay + drawer) */
+    /* Mobile menu (overlay + drawer) — link VERTICALI e drawer più stretto */
     .m-overlay{position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px); z-index:80; display:none}
-    .m-menu{position:fixed; top:0; right:0; height:100%; width:min(85vw, 340px); background:rgba(15,23,42,.9);
+    .m-menu{
+      position:fixed; top:0; right:0; height:100%; width:min(72vw, 300px);
+      background:rgba(15,23,42,.92);
       border-left:1px solid rgba(255,255,255,.08); box-shadow: -10px 0 24px rgba(0,0,0,.3);
-      transform:translateX(100%); transition:transform .2s ease; z-index:90; display:flex; flex-direction:column; padding:16px}
-    .m-menu a{color:#fff; padding:12px 10px; border-radius:10px}
+      transform:translateX(100%); transition:transform .2s ease; z-index:90;
+      display:flex; flex-direction:column; padding:16px
+    }
+    .m-menu nav{display:flex; flex-direction:column; gap:4px; margin-top:6px}
+    .m-menu a{display:block; width:100%; color:#fff; padding:12px 10px; border-radius:10px}
     .m-menu a:hover{background:rgba(255,255,255,.06)}
-    .m-menu .m-head{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px}
+    .m-menu .m-head{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:4px}
     .m-close{width:40px;height:40px; display:grid; place-items:center; border-radius:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); color:#fff}
     .m-cta{margin-top:auto; display:grid; gap:10px}
     .m-cta .btn{width:100%}
@@ -161,6 +171,13 @@
     }
     .to-top svg{width:18px;height:18px}
 
+    /* Sfumature scure top/bottom (sempre attive, non bianche) */
+    .edge-top,.edge-bottom{
+      position:fixed; left:0; right:0; pointer-events:none; z-index:40;
+    }
+    .edge-top{ top:0; height:calc(12px + var(--safe-top)); background:linear-gradient(to bottom, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+    .edge-bottom{ bottom:0; height:calc(14px + var(--safe-bottom)); background:linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,0)); }
+
     footer{padding:24px 0 calc(60px + var(--safe-bottom)); color:var(--n-500); font-size:.9rem}
     @media print {.no-print{display:none !important}}
   </style>
@@ -183,6 +200,9 @@
 <body>
   <!-- Layer sfondo fisso -->
   <div class="bg-fixed" aria-hidden="true"></div>
+  <!-- Sfumature scure ai bordi -->
+  <div class="edge-top" aria-hidden="true"></div>
+  <div class="edge-bottom" aria-hidden="true"></div>
 
   <!-- NAV -->
   <nav aria-label="Navigazione principale">
@@ -207,9 +227,10 @@
         <a href="#contatti">Contatti</a>
       </div>
 
-      <!-- CTA (PDF visibile solo desktop) + Burger mobile -->
+      <!-- CTA (PDF desktop) + Contattami desktop + Burger mobile -->
       <div class="cta">
         <a class="btn btn-ghost pdf-link" href="cv-compact.html" title="Apri e stampa in PDF">Scarica PDF compatto</a>
+        <a class="btn btn-primary desktop" href="mailto:banchini.giulio@gmail.com">Contattami</a>
         <button class="burger" aria-label="Apri menu" aria-expanded="false" aria-controls="mobileMenu">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
@@ -410,7 +431,7 @@
       btn.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toTop(); }});
     })();
 
-    // Burger menu (mobile)
+    // Burger menu (mobile) — verticale + larghezza ridotta
     (function(){
       const body=document.body;
       const overlay=document.querySelector('.m-overlay');
