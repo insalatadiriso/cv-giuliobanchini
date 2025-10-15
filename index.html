@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Giulio Banchini — Full-Stack Web Developer & B2B Consultant · CV</title>
   <meta name="description" content="CV di Giulio Banchini — Full-Stack Web Developer & B2B Consultant. Competenze, esperienze (Optima Italia, WindTre/Freeline, Kodland, Euroinformatica), formazione e contatti.">
   <meta property="og:title" content="Giulio Banchini — Full-Stack Web Developer & B2B Consultant">
@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 
-  <!-- Favicon { } programmer style (SVG inline data-URL) -->
+  <!-- Favicon { } programmer style (SVG data-URL) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%233B1C67'/%3E%3Cpath d='M25 18 L17 32 L25 46' stroke='%2300D1B2' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M39 18 L47 32 L39 46' stroke='%2300D1B2' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
   <style>
@@ -27,10 +27,14 @@
       --n-900:#0F172A; --n-800:#1E293B; --n-500:#94A3B8; --n-100:#F1F5F9; --white:#FFF;
       --radius:14px; --shadow-1:0 4px 14px rgba(0,0,0,.12); --shadow-2:0 10px 24px rgba(0,0,0,.18);
       --maxw:920px;
+      --safe-top: env(safe-area-inset-top);  --safe-bottom: env(safe-area-inset-bottom);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    html{background:#000} /* evita flash bianco oltre i limiti di scroll */
+    /* Lo sfondo del root usa lo stesso gradiente per coprire l'overscroll iOS (no bande nere) */
+    html{
+      background:linear-gradient(180deg, var(--secondary) 0%, var(--n-900) 100%);
+    }
 
     /* BG fisso come layer dedicato, robusto su tutti i browser */
     .bg-fixed{
@@ -42,27 +46,31 @@
       margin:0;
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--n-100);
-      background:transparent; /* lo sfondo è gestito da .bg-fixed */
+      background:transparent; /* lo sfondo è gestito da html + .bg-fixed */
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
       text-rendering:optimizeLegibility;
       overscroll-behavior:contain;
+      padding-top: var(--safe-top);
+      padding-bottom: var(--safe-bottom);
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
     :focus-visible{outline:3px solid var(--accent); outline-offset:2px; border-radius:8px}
     .wrap{max-width:var(--maxw); margin-inline:auto; padding:24px}
 
+    /* NAV */
     nav{
       position:sticky; top:0; z-index:50;
       backdrop-filter:saturate(180%) blur(10px);
       background:rgba(15,23,42,.7);
       border-bottom:1px solid rgba(255,255,255,.06)
     }
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 24px; flex-wrap:nowrap}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 24px; flex-wrap:nowrap}
     .brand{display:flex; align-items:center; gap:12px; font-family:Poppins, Inter, sans-serif; white-space:nowrap}
     .brand .logo{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--secondary);box-shadow:var(--shadow-1);border:1px solid rgba(255,255,255,.06)}
     .brand .logo svg{width:18px;height:18px}
+
     .nav-links{display:flex; gap:12px; align-items:center; flex-wrap:nowrap; white-space:nowrap; overflow:auto}
     .nav-links a{padding:8px 10px; border-radius:10px; color:var(--n-100)}
     .nav-links a:hover{background:rgba(255,255,255,.06)}
@@ -72,7 +80,36 @@
     .btn-primary:hover{transform:translateY(-1px); box-shadow:var(--shadow-2)}
     .btn-ghost{background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.08)}
     .btn-ghost:hover{background:rgba(255,255,255,.1)}
+    .pdf-link{display:inline-block}
+    /* MOBILE: nascondo nav-links e PDF, appare burger */
+    @media (max-width:767px){
+      .nav-links{display:none}
+      .pdf-link{display:none} /* rimuovi scarica PDF su mobile */
+    }
 
+    /* Burger button */
+    .burger{display:none; align-items:center; justify-content:center; width:40px; height:40px; border-radius:10px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); color:#fff}
+    .burger svg{width:22px;height:22px}
+    @media (max-width:767px){ .burger{display:inline-flex} }
+
+    /* Mobile menu (overlay + drawer) */
+    .m-overlay{position:fixed; inset:0; background:rgba(0,0,0,.5); backdrop-filter:blur(2px); z-index:80; display:none}
+    .m-menu{position:fixed; top:0; right:0; height:100%; width:min(85vw, 340px); background:rgba(15,23,42,.9);
+      border-left:1px solid rgba(255,255,255,.08); box-shadow: -10px 0 24px rgba(0,0,0,.3);
+      transform:translateX(100%); transition:transform .2s ease; z-index:90; display:flex; flex-direction:column; padding:16px}
+    .m-menu a{color:#fff; padding:12px 10px; border-radius:10px}
+    .m-menu a:hover{background:rgba(255,255,255,.06)}
+    .m-menu .m-head{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px}
+    .m-close{width:40px;height:40px; display:grid; place-items:center; border-radius:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); color:#fff}
+    .m-cta{margin-top:auto; display:grid; gap:10px}
+    .m-cta .btn{width:100%}
+
+    .m-open .m-overlay{display:block}
+    .m-open .m-menu{transform:translateX(0)}
+    .no-scroll{overflow:hidden}
+
+    /* HERO */
     header.hero{padding:36px 0 16px}
     .hero-inner{display:grid; grid-template-columns:96px 1fr; gap:20px; align-items:center}
     @media (min-width:720px){.hero-inner{grid-template-columns:128px 1fr}}
@@ -83,11 +120,13 @@
     .pills{display:flex; gap:8px; flex-wrap:wrap}
     .pill{background:rgba(45,108,223,.15); color:#dbeafe; border:1px solid rgba(45,108,223,.35); padding:6px 10px; border-radius:999px; font-size:14px; box-shadow:var(--shadow-1)}
 
+    /* SEZIONI */
     section{margin:28px 0}
     section .card{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow-1); padding:18px}
     section h2{margin:0 0 12px; font-family:Poppins, Inter, sans-serif; font-weight:700; letter-spacing:.2px}
     .muted{color:var(--n-500)}
 
+    /* COMPETENZE */
     .chips{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px}
     .chip{padding:6px 10px; border-radius:999px; background:#0f172a; border:1px solid rgba(255,255,255,.08)}
     .bars{display:grid; gap:10px}
@@ -96,6 +135,7 @@
     .meter{height:10px; background:#0b1221; border:1px solid rgba(255,255,255,.1); border-radius:999px; overflow:hidden}
     .meter>span{display:block; height:100%; background:linear-gradient(90deg, var(--primary), var(--accent)); width:var(--w,0%)}
 
+    /* ESPERIENZE */
     .timeline{position:relative; padding-left:22px; display:grid; gap:16px}
     .timeline::before{content:""; position:absolute; left:8px; top:4px; bottom:4px; width:2px; background:rgba(255,255,255,.12)}
     .t-item{position:relative}
@@ -103,11 +143,12 @@
     .kpi{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px}
     .badge{font-size:.8rem; padding:2px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.06)}
 
+    /* CONTATTI */
     .contacts{display:grid; gap:10px}
     .c-row{display:flex; align-items:center; gap:10px}
     .icon{width:18px; height:18px; flex:0 0 18px; color:#e2e8f0}
 
-    /* Torna su (ora anche desktop) */
+    /* Torna su (anche desktop) */
     .to-top{
       position:fixed; right:16px; bottom:16px; z-index:60;
       display:none; align-items:center; gap:8px;
@@ -120,7 +161,7 @@
     }
     .to-top svg{width:18px;height:18px}
 
-    footer{padding:24px 0 60px; color:var(--n-500); font-size:.9rem}
+    footer{padding:24px 0 calc(60px + var(--safe-bottom)); color:var(--n-500); font-size:.9rem}
     @media print {.no-print{display:none !important}}
   </style>
 
@@ -157,18 +198,44 @@
         </span>
         <strong>Giulio Banchini</strong>
       </div>
+
+      <!-- Desktop links -->
       <div class="nav-links" role="navigation">
         <a href="#competenze">Competenze</a>
         <a href="#esperienze">Esperienze</a>
         <a href="#formazione">Formazione</a>
         <a href="#contatti">Contatti</a>
       </div>
+
+      <!-- CTA (PDF visibile solo desktop) + Burger mobile -->
       <div class="cta">
-        <a class="btn btn-ghost" href="cv-compact.html" title="Apri e stampa in PDF">Scarica PDF compatto</a>
-        <a class="btn btn-primary" href="mailto:banchini.giulio@gmail.com">Contattami</a>
+        <a class="btn btn-ghost pdf-link" href="cv-compact.html" title="Apri e stampa in PDF">Scarica PDF compatto</a>
+        <button class="burger" aria-label="Apri menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile overlay + drawer -->
+  <div class="m-overlay" tabindex="-1" hidden></div>
+  <aside id="mobileMenu" class="m-menu" aria-hidden="true">
+    <div class="m-head">
+      <strong>Menu</strong>
+      <button class="m-close" aria-label="Chiudi menu">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <nav>
+      <a href="#competenze">Competenze</a>
+      <a href="#esperienze">Esperienze</a>
+      <a href="#formazione">Formazione</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+    <div class="m-cta">
+      <a class="btn btn-primary" href="mailto:banchini.giulio@gmail.com">Contattami</a>
+    </div>
+  </aside>
 
   <!-- HERO -->
   <header class="hero">
@@ -320,7 +387,7 @@
     </section>
   </main>
 
-  <!-- Torna su (ora anche desktop) -->
+  <!-- Torna su -->
   <button class="to-top" aria-label="Torna su">
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5l-7 7h14l-7-7z" fill="currentColor"/></svg>
     <span>Torna su</span>
@@ -331,6 +398,7 @@
   <script>
     document.getElementById('y').textContent=new Date().getFullYear();
 
+    // Torna su (desktop+mobile)
     (function(){
       const btn=document.querySelector('.to-top');
       const toggle=()=>{ btn.style.display = window.scrollY>240 ? 'flex':'none'; };
@@ -340,6 +408,41 @@
       const toTop=()=>{ const pref=window.matchMedia('(prefers-reduced-motion: reduce)').matches; window.scrollTo({top:0,behavior: pref?'auto':'smooth'}); };
       btn.addEventListener('click',toTop);
       btn.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toTop(); }});
+    })();
+
+    // Burger menu (mobile)
+    (function(){
+      const body=document.body;
+      const overlay=document.querySelector('.m-overlay');
+      const drawer=document.getElementById('mobileMenu');
+      const burger=document.querySelector('.burger');
+      const closeBtn=document.querySelector('.m-close');
+      const focusables='a, button';
+      let lastFocused=null;
+
+      function openMenu(){
+        lastFocused=document.activeElement;
+        body.classList.add('m-open','no-scroll');
+        overlay.hidden=false;
+        burger.setAttribute('aria-expanded','true');
+        drawer.setAttribute('aria-hidden','false');
+        setTimeout(()=>drawer.querySelector(focusables)?.focus(),0);
+      }
+      function closeMenu(){
+        body.classList.remove('m-open','no-scroll');
+        overlay.hidden=true;
+        burger.setAttribute('aria-expanded','false');
+        drawer.setAttribute('aria-hidden','true');
+        lastFocused?.focus();
+      }
+
+      burger.addEventListener('click',openMenu);
+      closeBtn.addEventListener('click',closeMenu);
+      overlay.addEventListener('click',closeMenu);
+      window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMenu(); });
+
+      // Chiudi quando si clicca un link del menu
+      drawer.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
     })();
   </script>
 </body>
