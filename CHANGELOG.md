@@ -1,18 +1,9 @@
 # Changelog
 
-## v1.0.4 — “Torna su” desktop + sfondo fisso + favicon { } (2025-10-14)
-- **“Torna su”**: ora visibile anche su **desktop** (compare dopo ~240px di scroll).
-- **Sfondo fisso**: introdotto layer `.bg-fixed` con `position: fixed; inset: 0` + gradiente; rimosse dipendenze da `background-attachment`.
-- **Favicon**: nuova **SVG { } programmer style** come icona della tab (data-URL inline) su `index.html` e, per coerenza, anche su `cv-compact.html`.
+## v1.0.5 — Mobile burger + iOS overscroll fix (2025-10-15)
+- **Burger menu mobile** (≤ 767px) con voci: Competenze, Esperienze, Formazione, Contatti + CTA “Contattami”.
+- **Rimozione “Scarica PDF compatto” su mobile** (resta su desktop).
+- **iOS Safari**: eliminate bande nere ai margini con `viewport-fit=cover`, gradiente su `html` e layer `.bg-fixed`, padding `safe-area`.
 
-## v1.0.3 — Micro-anchor, overscroll nero, icone chiare, logo { }
-- Bolla “Torna su” (mobile), overscroll nero, icone email/telefono più interpretabili, logo nav { }.
-
-## v1.0.2 — Sommario + sfondo fisso + PDF dark
-- Sommario reintrodotto (web), sfondo fisso, compatto dark.
-
-## v1.0.1 — Revisione contenuti & UI
-- Ruolo aggiornato; portfolio rimosso; CTA inline; box “Skill correlate”; fix foto.
-
-## v1.0.0 — Prima release
-- Web + compatto A4; SEO base; accessibilità WCAG AA.
+## v1.0.4 — “Torna su” desktop + sfondo fisso + favicon { }
+- “Torna su” anche su desktop; sfondo fisso stabilizzato; favicon SVG { }.
