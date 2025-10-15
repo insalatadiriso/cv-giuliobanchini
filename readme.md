@@ -13,7 +13,7 @@ Contiene:
 ## Pubblicazione (GitHub Pages)
 1. Repo con i file.
 2. **Settings → Pages** → “Deploy from branch” (`main`/root).
-3. Apri l’URL `https://<utente>.github.io/<repo>/`.
+3. Apri l’URL `https://insalatadiriso.github.io/<repo>/`.
 
 ## PDF compatto
 1. Apri `cv-compact.html`.
