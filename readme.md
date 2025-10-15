@@ -5,10 +5,10 @@ Contiene:
 - `cv-compact.html` — versione **compatta** ottimizzata per **stampa A4** (tema dark).
 - `CHANGELOG.md` — cronologia modifiche.
 
-## Ultimi aggiornamenti (2025-10-14)
-- **“Torna su”** ora visibile anche su **desktop** (auto-compare dopo scroll).
-- **Sfondo fisso** ripristinato con **layer dedicato** a pieno schermo (evita flash e regressioni).
-- **Favicon SVG** con logo **{ }** impostata come icona della tab.
+## Ultimi aggiornamenti (mobile)
+- **Burger menu** a destra su mobile (≤ 767px) con: Competenze, Esperienze, Formazione, Contatti, e **Contattami**.
+- **Rimozione “Scarica PDF compatto” su mobile** (resta su desktop).
+- **Nessuna banda nera** su iOS: gradiente coerente ai margini grazie a `viewport-fit=cover`, `safe-area` e gradiente su `html`.
 
 ## Pubblicazione (GitHub Pages)
 1. Repo con i file.
@@ -24,10 +24,3 @@ Contiene:
 - Colori: Primario `#2D6CDF`, Secondario `#3B1C67`, Accento `#00D1B2`
 - Tipografia: Titoli **Poppins**, Corpo **Inter**
 - Accessibilità: WCAG AA, focus visibile, semantica pulita
-
-## Checklist
-- [ ] Contrasto AA  
-- [ ] Test mobile/tablet/desktop  
-- [ ] Link “Scarica PDF compatto” ok  
-- [ ] Stampa ≤ 2 pagine A4  
-- [ ] Validazione HTML5 pulita  
